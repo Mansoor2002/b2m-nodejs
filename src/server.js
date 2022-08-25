@@ -3,16 +3,15 @@ const { createLogger, format, transports } = require('winston')
 const express = require('express')
 //const Prometheus = require('prom-client')
 
- const logger = createLogger({
-   level: 'debug',
-   format: format.combine(
-     format.timestamp({
-       format: "YYYY-MM-DD'T'HH:mm:ss.SSSZ"
-     }),
-     format.json()
-   ),
-   transports: [new transports.Console()]
- });
+const logger = createLogger({
+  level: 'debug',
+  transports: [
+	new transports.Console({
+		format: format.combine(format.timestamp(),format.json() )
+
+})
+]
+})
 
 var health = true;
 var msg;
